@@ -25,6 +25,11 @@ class FolderDependency extends Dependency {
 
     /**
      * @inheritdoc
+     */
+    public $reusable = TRUE;
+
+    /**
+     * @inheritdoc
      *
      * @throws InvalidConfigException
      */
@@ -57,7 +62,7 @@ class FolderDependency extends Dependency {
         $result = [ ];
         foreach ( $this->folder as $folder ) {
             if ( ( $stat = @stat( $folder ) ) ) {
-                $result[ ] = $stat[ 'atime' ] . '-' . $stat[ 'mtime' ] . '-' . $stat[ 'ctime' ];
+                $result[ ] = $folder . ':' . $stat[ 'atime' ] . '-' . $stat[ 'mtime' ] . '-' . $stat[ 'ctime' ];
             }
         }
         if ( $result ) {
