@@ -2,39 +2,50 @@
 
 namespace iiifx\cache\dependency;
 
-use InvalidArgumentException;
+use yii\base\InvalidConfigException;
+use yii\caching\Dependency;
+use yii\helpers\FileHelper;
+use Yii;
 
 /**
- * FileDependency represents a dependency based on a file's last modification time.
+ * Class FolderDependency
  *
- * If th last modification time of the file specified via [[fileName]] is changed,
- * the dependency is considered as changed.
+ * @author  Vitaliy IIIFX Khomenko <iiifx@yandex.com
  *
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @package iiifx\cache\dependency
  */
-class FolderDependency extends \yii\caching\FileDependency
-{
-    /**
-     * @var string the file path or path alias whose last modification time is used to
-     * check if the dependency has been changed.
-     */
-    public $fileName;
-
+class FolderDependency extends Dependency {
 
     /**
-     * Generates the data needed to determine if dependency has been changed.
-     * This method returns the file's last modification time.
-     * @param Cache $cache the cache component that is currently evaluating this dependency
-     * @return mixed the data needed to determine if dependency has been changed.
-     * @throws InvalidConfigException if [[fileName]] is not set
+     * Path to folder
+     *
+     * @var string
      */
-    protected function generateDependencyData($cache)
-    {
-        if ($this->fileName === null) {
-            throw new InvalidConfigException('FileDependency::fileName must be set');
+    public $folder;
+
+    /**
+     * @param \yii\caching\Cache $cache
+     *
+     * @return array|null
+     *
+     * @throws InvalidConfigException
+     */
+    protected function generateDependencyData ( $cache ) {
+        if ( $this->folder === NULL ) {
+            throw new InvalidConfigException( 'FolderDependency::$folder must be set' );
         }
-
-        return @filemtime(Yii::getAlias($this->fileName));
+        $this->folder = FileHelper::normalizePath( Yii::getAlias( $this->folder ) );
+        if ( !is_dir( $this->folder ) ) {
+            throw new InvalidConfigException( 'FolderDependency::$folder must be the path to the folder' );
+        }
+        if ( ( $stat = @stat( $this->folder ) ) ) {
+            return [
+                $stat[ 'atime' ],
+                $stat[ 'mtime' ],
+                $stat[ 'ctime' ],
+            ];
+        }
+        return NULL;
     }
+
 }

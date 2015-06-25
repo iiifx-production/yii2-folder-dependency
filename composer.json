@@ -9,7 +9,10 @@
         { "name": "Vitaliy IIIFX Khomenko", "email": "iiifx@yandex.com" }
     ],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*@stable"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*@stable"
     },
     "autoload": {
         "psr-4": { "iiifx\\cache\\dependency\\": "source/" }
