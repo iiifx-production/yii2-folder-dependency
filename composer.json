@@ -1,0 +1,17 @@
+{
+    "name": "iiifx-production/yii2-folder-dependency",
+    "type": "yii2-extension",
+    "description": "Folder dependency for Yii2 framework",
+    "keywords": ["yii2","folder","directory","cache","dependency"],
+    "homepage": "https://github.com/iiifx-production/yii2-folder-dependency.git",
+    "license": "MIT License",
+    "authors": [
+        { "name": "Vitaliy IIIFX Khomenko", "email": "iiifx@yandex.com" }
+    ],
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "autoload": {
+        "psr-4": { "iiifx\\cache\\dependency\\": "source/" }
+    }
+}
