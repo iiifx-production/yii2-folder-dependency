@@ -19,31 +19,49 @@ class FolderDependency extends Dependency {
     /**
      * Path to folder
      *
-     * @var string
+     * @var string[]
      */
     public $folder;
+
+    /**
+     * @inheritdoc
+     *
+     * @throws InvalidConfigException
+     */
+    public function init () {
+        parent::init();
+        if ( $this->folder === NULL ) {
+            throw new InvalidConfigException( 'FolderDependency::$folder must be set' );
+        }
+        if ( !is_array( $this->folder ) ) {
+            $this->folder = (array) $this->folder;
+        }
+        if ( !$this->folder ) {
+            throw new InvalidConfigException( 'FolderDependency::$folder must be the path to the folder' );
+        }
+        foreach ( $this->folder as $i => $folder ) {
+            $folder = FileHelper::normalizePath( Yii::getAlias( $folder ) );
+            if ( !is_dir( $folder ) ) {
+                throw new InvalidConfigException( 'FolderDependency::$folder must be the path to the folder' );
+            }
+            $this->folder[ $i ] = $folder;
+        }
+    }
 
     /**
      * @param \yii\caching\Cache $cache
      *
      * @return array|null
-     *
-     * @throws InvalidConfigException
      */
     protected function generateDependencyData ( $cache ) {
-        if ( $this->folder === NULL ) {
-            throw new InvalidConfigException( 'FolderDependency::$folder must be set' );
+        $result = [ ];
+        foreach ( $this->folder as $folder ) {
+            if ( ( $stat = @stat( $folder ) ) ) {
+                $result[ ] = $stat[ 'atime' ] . '-' . $stat[ 'mtime' ] . '-' . $stat[ 'ctime' ];
+            }
         }
-        $this->folder = FileHelper::normalizePath( Yii::getAlias( $this->folder ) );
-        if ( !is_dir( $this->folder ) ) {
-            throw new InvalidConfigException( 'FolderDependency::$folder must be the path to the folder' );
-        }
-        if ( ( $stat = @stat( $this->folder ) ) ) {
-            return [
-                $stat[ 'atime' ],
-                $stat[ 'mtime' ],
-                $stat[ 'ctime' ],
-            ];
+        if ( $result ) {
+            return implode( '/', $result );
         }
         return NULL;
     }
