@@ -41,7 +41,7 @@ class InitTest extends PHPUnit_Framework_TestCase {
      * @expectedException yii\base\InvalidConfigException
      */
     public function testFailPath () {
-        new FolderDependency( [ 'folder' => '/path/to/fail/directiry-' . date( 'YmdHis' ) ] );
+        new FolderDependency( [ 'folder' => '/path/to/fail/directory-' . date( 'YmdHis' ) ] );
     }
 
     /**
