@@ -83,3 +83,5 @@ $foldersDependency = new FolderDependency( [
 
 [link-packagist]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
 [link-downloads]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
+
+? Тест
