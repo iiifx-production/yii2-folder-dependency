@@ -15,7 +15,7 @@ $ composer require iiifx-production/yii2-folder-dependency
 или добавить в composer.json, в секцию require:
 
 ``` json
-    "iiifx-production/yii2-folder-dependency": "*"
+    "iiifx-production/yii2-folder-dependency": "0.1.*@stable"
 ```
 
 ## Использование
