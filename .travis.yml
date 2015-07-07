@@ -4,9 +4,9 @@ php:
   - 5.5
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer global require "fxp/composer-asset-plugin:~1.0.0"
-  - travis_retry composer update
+  - composer self-update
+  - composer global require "fxp/composer-asset-plugin:~1.0.0"
+  - composer update
 
 script:
-  - phpunit --coverage-text --coverage-clover=coverage.clover
+  - phpunit tests
