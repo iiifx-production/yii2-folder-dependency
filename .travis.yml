@@ -6,7 +6,6 @@ php:
 cache:
   directories:
     - vendor
-    - /home/travis/.composer
 
 before_script:
   - composer self-update
