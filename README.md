@@ -2,7 +2,7 @@
 
 FolderDependency - дополнительная зависимость для фреймворка Yii2, которая позволяет сбрасывать кэш при обнаружении изменений папки или содержащихся в ней файлов.
 
-[![Latest Version on Packagist][ico-version]][link-packagist] [![Software License][ico-license]](LICENSE.md) [![Total Downloads][ico-downloads]][link-downloads]
+[![Latest Version on Packagist][ico-version]][link-packagist] [![Software License][ico-license]](LICENSE.md) [![Total Downloads][ico-downloads]][link-downloads][![Build Status][ico-travis]][link-travis]
 
 ## Установка
 
@@ -80,6 +80,8 @@ $foldersDependency = new FolderDependency( [
 [ico-version]: https://img.shields.io/packagist/v/iiifx-production/yii2-folder-dependency.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/iiifx-production/yii2-folder-dependency.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/thephpleague/:package_name/master.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
 [link-downloads]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
+[link-travis]: https://travis-ci.org/iiifx-production/yii2-folder-dependency
