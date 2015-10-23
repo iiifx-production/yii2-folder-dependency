@@ -85,3 +85,6 @@ $foldersDependency = new FolderDependency( [
 [link-packagist]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
 [link-downloads]: https://packagist.org/packages/iiifx-production/yii2-folder-dependency
 [link-travis]: https://travis-ci.org/iiifx-production/yii2-folder-dependency
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/iiifx-production/yii2-folder-dependency/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
